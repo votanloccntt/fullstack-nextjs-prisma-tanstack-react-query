@@ -25,16 +25,14 @@ const getPost = async (id: string) => {
 
 const BlogDetailPage = async ({ params: { id } }: BlogDetailPageProps) => {
   const post = await getPost(id);
-  if (!post) return null;
-  const { title } = post;
   return (
     <div>
       <BackButton />
       <div className="mb-8">
-        <h2 className="text-2xl font-bold my-4">{title}</h2>
-        <ButtonAction />
+        <h2 className="text-2xl font-bold my-4">{post?.title}</h2>
+        <ButtonAction id={id} />
       </div>
-      <span className="badge badge-neutral">{post.tag.name}</span>
+      <span className="badge badge-neutral">{post?.tag.name}</span>
       <p>{post?.content}</p>
     </div>
   );
